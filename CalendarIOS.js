@@ -5,10 +5,7 @@ import moment from 'moment';
 import _ from 'lodash';
 
 import {
-  PropTypes
-} from 'react-native';
-
-let {
+  PropTypes,
   Dimensions,
   ScrollView,
   StyleSheet,
@@ -16,7 +13,7 @@ let {
   TouchableOpacity,
   TouchableWithoutFeedback,
   View
-} = React;
+} from 'react-native';
 
 let
   MAX_COLUMNS = 6,
