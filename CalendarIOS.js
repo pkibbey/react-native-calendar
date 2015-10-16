@@ -1,9 +1,12 @@
 'use strict';
 
-let React = require('react-native');
-let PropTypes = require('ReactPropTypes');
-let moment = require('moment');
-let _ = require('lodash');
+import React from 'react-native';
+import moment from 'moment';
+import _ from 'lodash';
+
+import {
+  PropTypes
+} from 'react-native';
 
 let {
   Dimensions,
@@ -16,7 +19,7 @@ let {
 } = React;
 
 let
-  MAX_COLUMNS = 7,
+  MAX_COLUMNS = 6,
   MAX_ROWS = 7,
   DEVICE_WIDTH = Dimensions.get('window').width,
   VIEW_INDEX = 2;
@@ -353,6 +356,8 @@ let Calendar = React.createClass({
   },
 
   render() {
+    console.log('render calendar', this.props.selectedDate);
+
     this.styles = _.merge(styles, this.props.customStyle);
     return (
       <View style={this.styles.calendarContainer}>
