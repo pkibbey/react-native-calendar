@@ -161,31 +161,6 @@ let Calendar = React.createClass({
     return initialStack;
   },
 
-
-  renderTopBar(date) {
-    if(this.props.showControls) {
-      return (
-        <View style={this.styles.calendarControls}>
-          <TouchableOpacity style={this.styles.controlButton} onPress={this._onPrev}>
-            <Text style={this.styles.controlButtonText}>{this.props.prevButtonText}</Text>
-          </TouchableOpacity>
-          <Text style={this.styles.title}>
-            {moment(this.state.currentMonth).format(this.props.titleFormat)}
-          </Text>
-          <TouchableOpacity style={this.styles.controlButton} onPress={this._onNext}>
-            <Text style={this.styles.controlButtonText}>{this.props.nextButtonText}</Text>
-          </TouchableOpacity>
-        </View>
-      )
-    } else {
-      return (
-        <View style={this.styles.calendarControls}>
-          <Text style={this.styles.title}>{moment(this.state.currentMonth).format(this.props.titleFormat)}</Text>
-        </View>
-      )
-    }
-  },
-
   renderHeading() {
     return (
       <View style={this.styles.calendarHeading}>
@@ -356,12 +331,9 @@ let Calendar = React.createClass({
   },
 
   render() {
-    console.log('render calendar', this.props.selectedDate);
-
     this.styles = _.merge(styles, this.props.customStyle);
     return (
       <View style={this.styles.calendarContainer}>
-        {this.renderTopBar()}
         {this.renderHeading(this.props.titleFormat)}
         {this.props.scrollEnabled ?
           <ScrollView
@@ -388,15 +360,10 @@ let Calendar = React.createClass({
 
 var styles = StyleSheet.create({
   calendarContainer: {
-    backgroundColor: '#f7f7f7',
+    backgroundColor: 'white',
   },
   monthContainer: {
     width: DEVICE_WIDTH
-  },
-  calendarControls: {
-    flex: 1,
-    flexDirection: 'row',
-    margin: 10,
   },
   controlButton: {
   },
@@ -410,39 +377,37 @@ var styles = StyleSheet.create({
   },
   calendarHeading: {
     flexDirection: 'row',
-    borderTopWidth: 1,
-    borderBottomWidth: 1,
+    paddingVertical: 4,
   },
   dayHeading: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 13,
     textAlign: 'center',
-    paddingVertical: 5
+    paddingVertical: 4,
+    color: '#999999'
   },
   weekendHeading: {
     flex: 1,
-    fontSize: 15,
+    fontSize: 13,
     textAlign: 'center',
-    paddingVertical: 5,
-    color: '#cccccc'
+    paddingVertical: 4,
+    color: '#999999'
   },
   weekRow: {
     flexDirection: 'row',
   },
   dayButton: {
     alignItems: 'center',
-    padding: 5,
+    padding: 1,
     width: DEVICE_WIDTH / 7,
-    borderTopWidth: 1,
-    borderTopColor: '#e9e9e9',
   },
   dayButtonFiller: {
     padding: 5,
     width: DEVICE_WIDTH / 7
   },
   day: {
-    fontSize: 16,
-    alignSelf: 'center',
+    fontSize: 13,
+    textAlign: 'center',
   },
   eventIndicatorFiller: {
     marginTop: 3,
@@ -457,9 +422,9 @@ var styles = StyleSheet.create({
   dayCircleFiller: {
     justifyContent: 'center',
     backgroundColor: 'transparent',
-    width: 28,
-    height: 28,
-    borderRadius: 14,
+    width: 26,
+    height: 26,
+    borderRadius: 3,
   },
   currentDayCircle: {
     backgroundColor: 'red',
@@ -468,11 +433,12 @@ var styles = StyleSheet.create({
     color: 'red',
   },
   selectedDayCircle: {
-    backgroundColor: 'black',
+    backgroundColor: '#999999',
   },
   selectedDayText: {
     color: 'white',
-    fontWeight: 'bold',
+    fontWeight: '600',
+    backgroundColor: 'transparent'
   },
   weekendDayText: {
     color: '#cccccc',
